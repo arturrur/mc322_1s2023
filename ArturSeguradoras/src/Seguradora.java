@@ -1,6 +1,14 @@
+import java.util.Random;
+
+
+
+
 
 public class Seguradora 
 {
+	public static void main(String[] args) {
+		System.out.println("Foi!");
+	}
 	private String nome;
 	private String telefone;
 	private String email;
@@ -43,7 +51,7 @@ public class Seguradora
 }
 
 
-public class Sinistro 
+class Sinistro 
 {
 	private int id;
 	private String data;
@@ -77,7 +85,7 @@ public class Sinistro
 }
 
 
-public class Cliente
+class Cliente
 {
 	private String nome;
 	private String cpf;
@@ -127,14 +135,14 @@ public class Cliente
 		this.endereco = endereco;
 	}
 	
-	public boolean validarCPF(String cpf) {
-		replaceAll(this.cpf)
-		FAZER DEPOIS, TENDI NADA
-	}
+	//public boolean validarCPF(String cpf) {
+		//replaceAll(this.cpf)
+		//FAZER DEPOIS, TENDI NADA
+	//}
 
 }
 
-public class Veiculo
+class Veiculo
 {
 	private String placa;
 	private String marca;
@@ -166,9 +174,3 @@ public class Veiculo
 	
 }
 
-public class Main {
-	
-	public static void main(String[] args) {
-		
-	}
-}
