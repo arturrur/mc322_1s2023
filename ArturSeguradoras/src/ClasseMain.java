@@ -1,14 +1,17 @@
 import java.util.Random;
 
 
-
-
-
-public class Seguradora 
+public class ClasseMain
 {
 	public static void main(String[] args) {
 		System.out.println("Foi!");
 	}
+
+}
+
+class Seguradora
+{
+	
 	private String nome;
 	private String telefone;
 	private String email;
