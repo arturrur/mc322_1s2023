@@ -1,18 +1,11 @@
 
-
-
 public class ClasseMain
 {
 	public static void main(String[] args) {
-		Cliente artur = new Cliente("Artur", "434.754.898.21", "02/04/2004", 18, "em casa");
-		if (artur.validarCPF()) {
-			System.out.println("Válido");
+		Cliente artur = new Cliente("Artur", "111.111.111-11", "02/04/2004", 18, "em casa");
 		}
-		else {
-			System.out.println("deu ruim meu mano");
-		}
-	}
-
 }
+
+
 
 

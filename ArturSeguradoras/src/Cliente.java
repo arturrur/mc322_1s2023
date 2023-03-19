@@ -13,7 +13,16 @@ public class Cliente
 	//construtor
 	public Cliente(String nome, String cpf, String dataNascimento, int idade, String endereco) {
 		this.nome = nome;
-		this.cpf = cpf;
+		
+		//se o cpf for válido, atrui-lo à this.cpf
+		if(validarCPF(cpf)) {
+			this.cpf = cpf;
+		}
+		
+		//caso contrário, printar mensagem de erro
+		else {
+			System.out.println("cpf inválido");
+		}
 		this.dataNascimento = dataNascimento;
 		this.idade = idade;
 		this.endereco = endereco;
@@ -62,7 +71,7 @@ public class Cliente
 	}
 	
 
-	public boolean validarCPF() {
+	public boolean validarCPF(String cpf) {
 		//tira a pontuação do cpf e sobra apenas os números
 		//se o cpf não tiver exatos 11 digitos, ele é inválido
 		
