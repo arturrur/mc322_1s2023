@@ -9,6 +9,10 @@ public class Sinistro
 	private String endereco;
 	Random gerador = new Random(); // usado para gerar um ID pseudo-aleatório
 	
+	public String toString() {
+		return "id: " + id + ", data: " + data + ", endereco: " + endereco;
+	}
+	
 	//construtor
 	public Sinistro(String data, String endereco) {
 		this.data = data;

@@ -10,11 +10,16 @@ public class Cliente
 	private int idade;
 	private String endereco;
 	
+	public String toString() {
+		return "nome: " + nome + ", cpf: " + cpf + ", dataNascimento: " + dataNascimento + 
+				", idade: " + idade + ", endereco: " + endereco;
+	}
+	
 	//construtor
 	public Cliente(String nome, String cpf, String dataNascimento, int idade, String endereco) {
 		this.nome = nome;
 		
-		//se o cpf for válido, atrui-lo à this.cpf
+		//se o cpf for válido, atrui-lo a this.cpf
 		if(validarCPF(cpf)) {
 			this.cpf = cpf;
 		}

@@ -8,6 +8,10 @@ public class Seguradora
 	private String email;
 	private String endereco;
 	
+	public String toString() {
+		return "nome: " + nome + ", telefone: " + telefone + ", email: " + email + ", endereco: " + endereco;
+	}
+	
 	//construtor
 	public Seguradora(String nome, String telefone, String email, String endereco) {
 		this.nome = nome;

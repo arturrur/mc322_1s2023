@@ -6,6 +6,10 @@ public class Veiculo
 	private String marca;
 	private String modelo;
 	
+	public String toString() {
+		return "placa: " + placa + ", marca: " + marca + ", modelo: " + modelo;
+	}
+	
 	//construtor 
 	public Veiculo(String placa, String marca, String modelo) {
 		this.placa = placa;
