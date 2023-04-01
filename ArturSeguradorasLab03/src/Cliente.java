@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.List;
 
 public class Cliente {
@@ -19,7 +20,7 @@ public class Cliente {
 		
 	//construtor
 	public Cliente(String nome, String endereco, Date dataLicenca, String educacao, 
-			String genero, String classeEconomica) 
+			String genero, String classeEconomica, List<Veiculo> listaVeiculos) 
 	{
 		this.nome = nome;
 		this.endereco = endereco;
@@ -27,6 +28,7 @@ public class Cliente {
 		this.educacao = educacao;
 		this.genero = genero;
 		this.classeEconomica = classeEconomica;
+		this.listaVeiculos = null;
 		
 		//COMO INICIALIZAR LISTAS??????
 	}
@@ -40,7 +42,7 @@ public class Cliente {
 		return endereco;
 	}
 		
-	public String getDataLicenca(){
+	public Date getDataLicenca(){
 		return dataLicenca;
 	}
 		
@@ -66,7 +68,7 @@ public class Cliente {
 		this.endereco = endereco;
 	}
 		
-	public void setDataLicenca(String dataLicenca) {
+	public void setDataLicenca(Date dataLicenca) {
 		this.dataLicenca = dataLicenca;
 	}
 		

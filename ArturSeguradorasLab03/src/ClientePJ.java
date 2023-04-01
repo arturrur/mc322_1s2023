@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.List;
 
 public class ClientePJ extends Cliente{
@@ -10,9 +11,9 @@ public class ClientePJ extends Cliente{
 	{
 		super(nome, endereco, dataLicenca, educacao, genero, classeEconomica,
 													listaVeiculos);
-		if(validarCNPJ(cnpj)) {
-			this.cnpj = cnpj;
-		}
+		if(!validarCNPJ(cnpj))
+			System.out.println("cnpj inválida, me engana não hehehee");
+		this.cnpj = cnpj;
 		this.dataFundacao = dataFundacao;
 	}
 	
@@ -30,14 +31,23 @@ public class ClientePJ extends Cliente{
 		this.dataFundacao = dataFundacao;
 	}
 	
+	@Override   // refazendo o toString(), devido á novas variaaveis
+	public String toString() {
+		return super.toString() + ", cpf :" + cnpj + ", dataNascimento: " + dataFundacao;
+	}
+	
+	
 	public boolean validarCNPJ(String cnpj) {
 		String cnpjAux = cnpj.replaceAll("[^0-9]+", "");
 		
-		int PrimeiroDigitoVerificador = Character.getNumericValue(cnpjAux.charAt(12));
-		int SegundoDigitoVerificador = Character.getNumericValue(cnpjAux.charAt(13));
+		int PrimeiroDigitoVerificador = Character.getNumericValue(cnpjAux.charAt(12)); //penultimo digito da cnpj
+		int SegundoDigitoVerificador = Character.getNumericValue(cnpjAux.charAt(13)); //ultimo digito da cnpj
 		
+		//todas as cnpj devem ter 14 digitos
 		if (cnpjAux.length() != 14)
 			return false;
+		
+		//checando a validade do penultimo digito da cnpj
 		
 		int somaAtual1 = 0;
 		
@@ -57,6 +67,7 @@ public class ClientePJ extends Cliente{
 			return false;
 		}
 		
+		// checando a validade no ultimo digito da cnpj
 		int somaAtual2 = 0;
 		
 		for (int i = 0, j = 6; i < 5; i++, j--) {
@@ -75,6 +86,8 @@ public class ClientePJ extends Cliente{
 		}else if (11 - (somaAtual2 % 11) != SegundoDigitoVerificador) {
 			return false;
 		}
+		
+		//se passou por todos os testes de falsidade, então é válido
 		
 		return true;
 	}

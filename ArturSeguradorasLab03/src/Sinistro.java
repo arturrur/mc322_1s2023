@@ -30,11 +30,11 @@ public class Sinistro
 		this.cliente = cliente;
 		
 		/*
-		  escolhe aleatoriamente um número de 0-1000 e atribui à id
+		  escolhe aleatoriamente um número de 0-100000 e atribui à id
 		  não é necessario receber parametro de id da chamada do método
 		 */
 		
-		this.id = gerador.nextInt(1000); 
+		this.id = gerador.nextInt(100000); 
 	}
 	
 	// getters 

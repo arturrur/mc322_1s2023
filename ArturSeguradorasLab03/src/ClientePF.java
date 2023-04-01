@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.List;
 
 public class ClientePF extends Cliente {
@@ -6,12 +7,14 @@ public class ClientePF extends Cliente {
 	
 	public ClientePF(String nome, String endereco, Date dataLicenca, String educacao, 
 				String genero, String classeEconomica, List<Veiculo> listaVeiculos, 
-			String cpf, Date dataNascimento){
+			String cpf, Date dataNascimento)
+	{
+		
 		super(nome, endereco, dataLicenca, educacao, genero, classeEconomica,
 															listaVeiculos);
-		if(validarCPF(cpf)) {
-			this.cpf = cpf;
-		}
+		this.cpf = cpf;
+		if(!validarCPF(cpf))
+			System.out.println("cpf inválido");
 		this.dataNascimento = dataNascimento;
 	}
 	
@@ -27,6 +30,12 @@ public class ClientePF extends Cliente {
 	//setters
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+	
+	@Override   //refazendo o toString, devido à novas variáveis
+	
+	public String toString() {
+		return super.toString() + ", cpf :" + cpf + ", dataNascimento: " + dataNascimento;
 	}
 	
 	
