@@ -70,7 +70,7 @@ public class Seguradora
 	public boolean removerCliente(String cliente) {
 		boolean removeu = false;
 		for(int i = 0; i < listaClientes.size(); i++) {
-			if((listaClientes.get(i).getNome()).compareTo(cliente) == 0) {
+			if((listaClientes.get(i).toString().compareTo(cliente) == 0)) {
 				listaClientes.remove(i);
 				removeu = true;
 			}
