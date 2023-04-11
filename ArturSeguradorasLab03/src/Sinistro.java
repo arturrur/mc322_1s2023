@@ -13,10 +13,12 @@ public class Sinistro
 	
 	Random gerador = new Random(); // usado para gerar um ID pseudo-aleatório
 	
+	
+	@Override
 	public String toString() {
-		return "id: " + id + ", data: " + data + ", endereco: " + endereco + 
-				", seguradora: " + seguradora.toString() + ", veiculo" + veiculo.toString() +
-				", cliente: " + cliente.toString();
+		return "\nid: " + id + "\ndata: " + data + "\nendereco: " + endereco + 
+				"\nseguradora: " + seguradora.toString() + "\nveiculo" + veiculo.toString() +
+				"\ncliente: " + cliente.toString();
 	}
 	
 	//construtor

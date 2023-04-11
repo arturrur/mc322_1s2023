@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,18 +10,18 @@ public class Cliente {
 	private String educacao;
 	private String genero;
 	private String classeEconomica;
-	private List<Veiculo> listaVeiculos;
+	private ArrayList<Veiculo> listaVeiculos;
 
-		
+	@Override
 	public String toString() {
-		return "nome: " + nome + ", endereco: " + endereco + ", dataLicenca: " + dataLicenca + 
-				", educacao: " + educacao + ", genero: " + genero + ", classeEconomica" +
-				classeEconomica;
+		return "\nnome: " + nome + "\nendereco: " + endereco + "\ndataLicenca: " + dataLicenca + 
+				"\neducacao: " + educacao + "\ngenero: " + genero + "\nclasseEconomica: " +
+				classeEconomica + "\nlistaVeiculos: " + imprimirListaVeiculos(listaVeiculos);
 	}
 		
 	//construtor
 	public Cliente(String nome, String endereco, Date dataLicenca, String educacao, 
-			String genero, String classeEconomica, List<Veiculo> listaVeiculos) 
+			String genero, String classeEconomica, ArrayList<Veiculo> listaVeiculos) 
 	{
 		this.nome = nome;
 		this.endereco = endereco;
@@ -28,9 +29,13 @@ public class Cliente {
 		this.educacao = educacao;
 		this.genero = genero;
 		this.classeEconomica = classeEconomica;
-		this.listaVeiculos = null;
+		this.listaVeiculos = listaVeiculos;
 		
 		//COMO INICIALIZAR LISTAS??????
+	}
+	//usado para dar Override nas sub-classes
+	public String getID() {
+		return "";
 	}
 		
 	//getters 
@@ -82,6 +87,15 @@ public class Cliente {
 	
 	public void setClasseEconomica(String classeEconomica) {
 		this.classeEconomica = classeEconomica;
+	}
+	
+	public String imprimirListaVeiculos(ArrayList<Veiculo> listaVeiculos) {
+		String s = "";
+		for (int i = 0; i < listaVeiculos.size(); i++) {
+			s = s + "\nVeiculo número :" + i;
+			s = s + listaVeiculos.get(i).toString();
+		}
+		return s;
 	}
 		
 

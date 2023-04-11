@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -6,15 +7,16 @@ public class ClientePF extends Cliente {
 	private Date dataNascimento;
 	
 	public ClientePF(String nome, String endereco, Date dataLicenca, String educacao, 
-				String genero, String classeEconomica, List<Veiculo> listaVeiculos, 
+				String genero, String classeEconomica, ArrayList<Veiculo> listaVeiculos, 
 			String cpf, Date dataNascimento)
 	{
 		
 		super(nome, endereco, dataLicenca, educacao, genero, classeEconomica,
 															listaVeiculos);
-		this.cpf = cpf;
+
 		if(!validarCPF(cpf))
 			System.out.println("cpf inválido");
+		this.cpf = cpf;
 		this.dataNascimento = dataNascimento;
 	}
 	
@@ -33,9 +35,13 @@ public class ClientePF extends Cliente {
 	}
 	
 	@Override   //refazendo o toString, devido à novas variáveis
-	
 	public String toString() {
-		return super.toString() + ", cpf :" + cpf + ", dataNascimento: " + dataNascimento;
+		return super.toString() + "\ncpf: " + cpf + "\ndataNascimento: " + dataNascimento;
+	}
+	
+	@Override   //retorna o identificador do clientePF, o CPF.
+	public String getID() {
+		return cpf;
 	}
 	
 	

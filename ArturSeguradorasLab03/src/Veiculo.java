@@ -7,10 +7,14 @@ public class Veiculo
 	private String modelo;
 	private int anoFabricacao;
 	
+	
+	@Override
 	public String toString() {
-		return "placa: " + placa + ", marca: " + marca + ", modelo: " + modelo +
-				"anoFabricacao: " + anoFabricacao;
+		return "\nplaca: " + placa + "\nmarca: " + marca + "\nmodelo: " + modelo +
+				"\nanoFabricacao: " + anoFabricacao;
 	}
+	
+	
 	
 	//construtor 
 	public Veiculo(String placa, String marca, String modelo, int anoFabricacao) {
@@ -19,6 +23,9 @@ public class Veiculo
 		this.modelo = modelo;
 		this.anoFabricacao = anoFabricacao;
 	}
+	
+	
+	
 	//getters 
 	public String getPlaca() {
 		return placa;

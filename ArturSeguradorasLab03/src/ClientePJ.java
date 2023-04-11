@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -7,12 +8,12 @@ public class ClientePJ extends Cliente{
 	
 	public ClientePJ(String nome, String endereco, Date dataLicenca, 
 		String educacao, String genero, String classeEconomica, 
-	List<Veiculo> listaVeiculos, String cnpj, Date dataFundacao)
+	ArrayList<Veiculo> listaVeiculos, String cnpj, Date dataFundacao)
 	{
 		super(nome, endereco, dataLicenca, educacao, genero, classeEconomica,
 													listaVeiculos);
 		if(!validarCNPJ(cnpj))
-			System.out.println("cnpj inválida, me engana não hehehee");
+			System.out.println("cnpj inválida");
 		this.cnpj = cnpj;
 		this.dataFundacao = dataFundacao;
 	}
@@ -33,7 +34,12 @@ public class ClientePJ extends Cliente{
 	
 	@Override   // refazendo o toString(), devido á novas variaaveis
 	public String toString() {
-		return super.toString() + ", cpf :" + cnpj + ", dataNascimento: " + dataFundacao;
+		return super.toString() + "\ncnpj: " + cnpj + "\ndataFundacao: " + dataFundacao;
+	}
+	
+	@Override  //retorna o identificador do clientePJ, a CNPJ.
+	public String getID() {
+		return cnpj;
 	}
 	
 	
