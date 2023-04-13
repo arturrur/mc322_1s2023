@@ -3,24 +3,46 @@ import java.util.Date;
 import java.util.List;
 
 public class ClientePF extends Cliente {
+	private Date dataLicenca;
+	private String educacao;
+	private String genero;
+	private String classeEconomica;
 	private final String cpf;
 	private Date dataNascimento;
 	
 	public ClientePF(String nome, String endereco, Date dataLicenca, String educacao, 
-				String genero, String classeEconomica, ArrayList<Veiculo> listaVeiculos, 
-			String cpf, Date dataNascimento)
+				String genero, String classeEconomica, String cpf, Date dataNascimento)
 	{
 		
-		super(nome, endereco, dataLicenca, educacao, genero, classeEconomica,
-															listaVeiculos);
-
+		super(nome, endereco);
 		if(!validarCPF(cpf))
 			System.out.println("cpf inválido");
 		this.cpf = cpf;
+		this.dataLicenca = dataLicenca;
+		this.educacao = educacao;
+		this.genero = genero;
+		this.classeEconomica = classeEconomica;
 		this.dataNascimento = dataNascimento;
 	}
 	
 	//getters
+
+	public Date getDataLicenca(){
+		return dataLicenca;
+	}
+		
+	public String getEducacao() {
+		return educacao;
+	}
+		
+	public String getGenero() {
+		return genero;
+	}
+	
+	public String getClasseEconomica() {
+		return classeEconomica;
+	}
+	
 	public String getCpf() {
 		return cpf;
 	}
@@ -29,14 +51,33 @@ public class ClientePF extends Cliente {
 		return dataNascimento;
 	}
 	
+	
 	//setters
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 	
+	public void setDataLicenca(Date dataLicenca) {
+		this.dataLicenca = dataLicenca;
+	}
+		
+	public void setEducacao(String educacao) {
+		this.educacao = educacao;
+	}
+		
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+	
+	public void setClasseEconomica(String classeEconomica) {
+		this.classeEconomica = classeEconomica;
+	}
+	
 	@Override   //refazendo o toString, devido à novas variáveis
 	public String toString() {
-		return super.toString() + "\ncpf: " + cpf + "\ndataNascimento: " + dataNascimento;
+		return super.toString() + "\ndataLicenca: " + dataLicenca + "\neducacao: " + educacao +
+				"\ngenero: " + genero + "\nclasseEconomica: " + classeEconomica +
+				 "\ncpf: " + cpf + "\ndataNascimento: " + dataNascimento;
 	}
 	
 	@Override   //retorna o identificador do clientePF, o CPF.

@@ -6,30 +6,20 @@ public class Cliente {
 	//variáveis
 	private String nome;
 	private String endereco;
-	private Date dataLicenca;
-	private String educacao;
-	private String genero;
-	private String classeEconomica;
 	private ArrayList<Veiculo> listaVeiculos;
 
 	@Override
 	public String toString() {
-		return "\nnome: " + nome + "\nendereco: " + endereco + "\ndataLicenca: " + dataLicenca + 
-				"\neducacao: " + educacao + "\ngenero: " + genero + "\nclasseEconomica: " +
-				classeEconomica + "\nlistaVeiculos: " + imprimirListaVeiculos(listaVeiculos);
+		return "\nnome: " + nome + "\nendereco: " + endereco + 
+				"\nlistaVeiculos: " + imprimirListaVeiculos(listaVeiculos);
 	}
 		
 	//construtor
-	public Cliente(String nome, String endereco, Date dataLicenca, String educacao, 
-			String genero, String classeEconomica, ArrayList<Veiculo> listaVeiculos) 
+	public Cliente(String nome, String endereco) 
 	{
 		this.nome = nome;
 		this.endereco = endereco;
-		this.dataLicenca = dataLicenca;
-		this.educacao = educacao;
-		this.genero = genero;
-		this.classeEconomica = classeEconomica;
-		this.listaVeiculos = listaVeiculos;
+		this.listaVeiculos = new ArrayList<Veiculo>();
 		
 		//COMO INICIALIZAR LISTAS??????
 	}
@@ -46,23 +36,10 @@ public class Cliente {
 	public String getEndereco(){
 		return endereco;
 	}
-		
-	public Date getDataLicenca(){
-		return dataLicenca;
-	}
-		
-	public String getEducacao() {
-		return educacao;
-	}
-		
-	public String getGenero() {
-		return genero;
-	}
 	
-	public String getClasseEconomica() {
-		return classeEconomica;
+	public ArrayList<Veiculo> getListaVeiculos(){
+		return listaVeiculos;
 	}
-	
 		
 	//setters 
 	public void setNome(String nome) {
@@ -72,30 +49,25 @@ public class Cliente {
 	public void setEndereco(String endereco){
 		this.endereco = endereco;
 	}
-		
-	public void setDataLicenca(Date dataLicenca) {
-		this.dataLicenca = dataLicenca;
-	}
-		
-	public void setEducacao(String educacao) {
-		this.educacao = educacao;
-	}
-		
-	public void setGenero(String genero) {
-		this.genero = genero;
+	
+	public void setListaVeiculos(ArrayList<Veiculo> listaVeiculos) {
+		this.listaVeiculos = listaVeiculos;
 	}
 	
-	public void setClasseEconomica(String classeEconomica) {
-		this.classeEconomica = classeEconomica;
-	}
-	
+	//para o toString()
 	public String imprimirListaVeiculos(ArrayList<Veiculo> listaVeiculos) {
-		String s = "";
+		String s = "\n****INICIO-LISTA-VEICULOS****";
 		for (int i = 0; i < listaVeiculos.size(); i++) {
-			s = s + "\nVeiculo número :" + i;
-			s = s + listaVeiculos.get(i).toString();
+			s = s + "\nVeiculo número: " + i + "\n";
+			s = s + listaVeiculos.get(i).getPlaca();
 		}
+		s = s + "\n****FINAL-LISTA-VEICULOS****";
 		return s;
+	}
+	
+	public boolean cadastrarVeiculo(Veiculo veiculo) {
+		listaVeiculos.add(veiculo);
+		return true;
 	}
 		
 

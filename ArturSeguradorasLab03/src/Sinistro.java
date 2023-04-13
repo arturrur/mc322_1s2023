@@ -16,9 +16,10 @@ public class Sinistro
 	
 	@Override
 	public String toString() {
-		return "\nid: " + id + "\ndata: " + data + "\nendereco: " + endereco + 
-				"\nseguradora: " + seguradora.toString() + "\nveiculo" + veiculo.toString() +
-				"\ncliente: " + cliente.toString();
+		return "\nid: " + id + "\ndata: " + data + "\nendereco: " + endereco +
+				"\nseguradora: " + seguradora.getNome() +
+				"\nveiculo: " + veiculo.getPlaca() +
+				"\ncliente: " + cliente.getID();
 	}
 	
 	//construtor

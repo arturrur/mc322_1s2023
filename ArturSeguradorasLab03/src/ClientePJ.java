@@ -6,12 +6,9 @@ public class ClientePJ extends Cliente{
 	private final String cnpj;
 	private Date dataFundacao;
 	
-	public ClientePJ(String nome, String endereco, Date dataLicenca, 
-		String educacao, String genero, String classeEconomica, 
-	ArrayList<Veiculo> listaVeiculos, String cnpj, Date dataFundacao)
+	public ClientePJ(String nome, String endereco, String cnpj, Date dataFundacao)
 	{
-		super(nome, endereco, dataLicenca, educacao, genero, classeEconomica,
-													listaVeiculos);
+		super(nome, endereco);
 		if(!validarCNPJ(cnpj))
 			System.out.println("cnpj inválida");
 		this.cnpj = cnpj;

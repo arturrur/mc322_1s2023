@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Seguradora
 {
@@ -20,34 +21,35 @@ public class Seguradora
 	}
 	
 	//construtor
-	public Seguradora(String nome, String telefone, String email, String endereco,
-			ArrayList<Sinistro> listaSinistros, ArrayList<Cliente> listaClientes) {
+	public Seguradora(String nome, String telefone, String email, String endereco) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.email = email;
 		this.endereco = endereco;
-		this.listaSinistros = listaSinistros;
-		this.listaClientes = listaClientes;
+		listaSinistros = new ArrayList<Sinistro>();
+		listaClientes = new ArrayList<Cliente>();
 	}
 	
 	
 	
 	//usados no toString()
 	public String imprimirListaSinistros(ArrayList<Sinistro> lista) {
-		String s = "";
+		String s = "\n***INÍCIO-LISTA-SINISTRO***";
 		for(int i = 0; i < lista.size(); i++) {
-			s = s + "\nSinistro número " + i + ": ";
-			s = s + lista.get(i).toString();
+			s = s + "\nSinistro número: " + i;
+			s = s + lista.get(i).getId();
 		}
+		s =  s + "\n***final-LISTA-SINISTRO***";
 		return s;
 	}
 	
 	public String imprimirListaClientes(ArrayList<Cliente> lista) {
-		String s = "";
+		String s = "\n**INÍCIO-LISTA-CLIENTES**";
 		for(int i = 0; i < lista.size(); i++) {
-			s = s + "\nCliente número " + i + ": ";
-			s = s + lista.get(i).toString();
+			s = s + "\nCliente número: " + i;
+			s = s + lista.get(i).getID();
 		}
+		s = s + "\n**FINAL-LISTA-CLIENTES**";
 		return s;
 	}
 	
@@ -157,10 +159,17 @@ public class Seguradora
 		return null; // NÃO TEM LISTA PARA RETORNAR
 	}
 	
-	public boolean gerarSinistro() {
-		
-		return false;		
+	public boolean cadastrarSinistro(Sinistro sinistro) {
+		listaSinistros.add(sinistro);
+		return true;		
 	}
+	/*
+	 * não aparenta ter utilidade
+	public boolean gerarSinistro() {
+		return true;
+	}	
+	 */
+
 	
 	//mostrar todos os Sinistro de um cliente a 
 	//partir de seu ID, cpf ou cnpj
@@ -170,7 +179,7 @@ public class Seguradora
 			//compara a string dada como argumento(String cliente) com todos os 
 			//ID de todos os clientes dos sinistros na listaSinistros.
 			if(listaSinistros.get(i).getCliente().getID().compareTo(cliente) == 0) { //achou o cliente
-				System.out.println(listaSinistros.get(i).toString());
+				System.out.println(listaSinistros.get(i).toString());                //mostra todo o Sinistro
 				achou = true;
 			}
 		}
