@@ -11,7 +11,7 @@ public class ClientePJ extends Cliente{
 		super(nome, endereco);
 		if(!validarCNPJ(cnpj))
 			System.out.println("cnpj inválida");
-		this.cnpj = cnpj;
+		this.cnpj = cnpj; // não pode estar dentro do if, pois é do tipo final.
 		this.dataFundacao = dataFundacao;
 	}
 	

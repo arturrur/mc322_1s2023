@@ -16,8 +16,8 @@ public class Seguradora
 	@Override
 	public String toString() {
 		return "\nnome: " + nome + "\ntelefone: " + telefone + "\nemail: " + email + "\nendereco: " + endereco + 
-				"\nlistaSinistros: " + imprimirListaSinistros(listaSinistros) + "\nlistaClientes: " + 
-				imprimirListaClientes(listaClientes);
+				"\nlistaSinistros: " + imprimirListaSinistros(listaSinistros) + //apenas o id de cada sinistro
+				"\nlistaClientes: " + imprimirListaClientes(listaClientes);     //apenas o ID de cada cliente(cpf/cnpj)
 	}
 	
 	//construtor
@@ -26,8 +26,8 @@ public class Seguradora
 		this.telefone = telefone;
 		this.email = email;
 		this.endereco = endereco;
-		listaSinistros = new ArrayList<Sinistro>();
-		listaClientes = new ArrayList<Cliente>();
+		listaSinistros = new ArrayList<Sinistro>(); //sem parametro, apenas cria a lista
+		listaClientes = new ArrayList<Cliente>();   //também sem parametro
 	}
 	
 	
@@ -36,8 +36,8 @@ public class Seguradora
 	public String imprimirListaSinistros(ArrayList<Sinistro> lista) {
 		String s = "\n***INÍCIO-LISTA-SINISTRO***";
 		for(int i = 0; i < lista.size(); i++) {
-			s = s + "\nSinistro número: " + i;
-			s = s + lista.get(i).getId();
+			s = s + "\nSinistro número: " + i + "\n";
+			s = s + lista.get(i).getId();    //apenas os IDs dos sinistros
 		}
 		s =  s + "\n***final-LISTA-SINISTRO***";
 		return s;
@@ -46,8 +46,8 @@ public class Seguradora
 	public String imprimirListaClientes(ArrayList<Cliente> lista) {
 		String s = "\n**INÍCIO-LISTA-CLIENTES**";
 		for(int i = 0; i < lista.size(); i++) {
-			s = s + "\nCliente número: " + i;
-			s = s + lista.get(i).getID();
+			s = s + "\nCliente número: " + i + "\n";
+			s = s + lista.get(i).getID();    //apenas os IDs dos clietes
 		}
 		s = s + "\n**FINAL-LISTA-CLIENTES**";
 		return s;
@@ -111,24 +111,30 @@ public class Seguradora
 	
 	//adiciona um cliente na listaClientes
 	public boolean cadastrarCliente(Cliente cliente) {
-		listaClientes.add(cliente);
-		return true;
+		boolean repetido = false;
+		for(int i = 0; i < listaClientes.size(); i++) {
+			if(listaClientes.get(i).getID() == cliente.getID()) //checa se o cliente já está na lista
+				repetido = true;
+		}
+		if (!repetido) {					//se não estiver
+			listaClientes.add(cliente);     //adiciona na lista
+			return true;
+		}
+		return false;
 	}
 	
 	
 	
-	//remove um cliente da listaClientes a partir de seu ID
+	//remove um cliente da listaClientes a partir de seu ID (cpf/cnpj)
 	public boolean removerCliente(String cliente) {
 		boolean removeu = false;
-		
 		for(int i = 0; i < listaClientes.size(); i++) {
 			if((listaClientes.get(i).getID() == cliente)) {
 				listaClientes.remove(i);
 				removeu = true;
 			}
-		}
-		
-		return removeu;
+		}	
+		return removeu; //se for false, o cliente não estava na lista
 	}
 	
 	//gera uma nova lista contendo apenas ClientePF ou ClientePJ,
@@ -137,9 +143,8 @@ public class Seguradora
 		
 		if(tipoCliente.compareTo("ClientePF") == 0) {
 			ArrayList<Cliente> listaClientesPF = new ArrayList<Cliente>();
-			
 			for(int i = 0; i < listaClientes.size(); i++) {
-				if(listaClientes.get(i) instanceof ClientePF) { //se for do tipo que ele pediu adiciona na nova lista
+				if(listaClientes.get(i) instanceof ClientePF) { //se for do tipo PF adiciona na nova lista
 					listaClientesPF.add(listaClientes.get(i));
 				}
 			}
@@ -149,7 +154,7 @@ public class Seguradora
 			ArrayList<Cliente> listaClientesPJ = new ArrayList<Cliente>();
 			
 			for(int i = 0; i < listaClientes.size(); i++) {
-				if(listaClientes.get(i) instanceof ClientePJ) {//se for do tipo que ele pediu adiciona na nova lista
+				if(listaClientes.get(i) instanceof ClientePJ) {//se for do tipo PJ adiciona na nova lista
 					listaClientesPJ.add(listaClientes.get(i));
 				}
 			}
@@ -160,11 +165,23 @@ public class Seguradora
 	}
 	
 	public boolean cadastrarSinistro(Sinistro sinistro) {
-		listaSinistros.add(sinistro);
-		return true;		
+		boolean repetido = false;
+		for(int i = 0; i < listaSinistros.size(); i++) {
+			if(listaSinistros.get(i).getId() == sinistro.getId()) //checa se o sinistro já está na lista
+				repetido = true;
+		}
+		if (!repetido) {					  //se não estiver
+			listaSinistros.add(sinistro);     //adiciona na lista
+			return true;
+		}
+		return false;
 	}
+	
+	
+	
 	/*
-	 * não aparenta ter utilidade
+	 * não entendi a utilidade dessa função
+	 * criei a cadastrarSinistro, para adicionar na listaSinistros
 	public boolean gerarSinistro() {
 		return true;
 	}	
@@ -176,10 +193,8 @@ public class Seguradora
 	public boolean visualizarSinistro(String cliente) {
 		boolean achou = false;
 		for(int i = 0; i < listaSinistros.size(); i++) {
-			//compara a string dada como argumento(String cliente) com todos os 
-			//ID de todos os clientes dos sinistros na listaSinistros.
 			if(listaSinistros.get(i).getCliente().getID().compareTo(cliente) == 0) { //achou o cliente
-				System.out.println(listaSinistros.get(i).toString());                //mostra todo o Sinistro
+				System.out.println(listaSinistros.get(i).toString());                //mostra todo o Sinistro, pode ter mais de um
 				achou = true;
 			}
 		}

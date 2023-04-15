@@ -17,7 +17,7 @@ public class ClientePF extends Cliente {
 		super(nome, endereco);
 		if(!validarCPF(cpf))
 			System.out.println("cpf inválido");
-		this.cpf = cpf;
+		this.cpf = cpf; // não pode estar dentro do if, pois é do tipo final.
 		this.dataLicenca = dataLicenca;
 		this.educacao = educacao;
 		this.genero = genero;

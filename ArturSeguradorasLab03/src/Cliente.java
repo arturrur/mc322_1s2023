@@ -11,7 +11,7 @@ public class Cliente {
 	@Override
 	public String toString() {
 		return "\nnome: " + nome + "\nendereco: " + endereco + 
-				"\nlistaVeiculos: " + imprimirListaVeiculos(listaVeiculos);
+				"\nlistaVeiculos: " + imprimirListaVeiculos(listaVeiculos); //imprime as placas dos veículos na lista
 	}
 		
 	//construtor
@@ -19,7 +19,8 @@ public class Cliente {
 	{
 		this.nome = nome;
 		this.endereco = endereco;
-		this.listaVeiculos = new ArrayList<Veiculo>();
+		this.listaVeiculos = new ArrayList<Veiculo>();  //sem parametro, se já tiver alguma lista pronta,
+														//usar o setListaVeiculos
 		
 		//COMO INICIALIZAR LISTAS??????
 	}

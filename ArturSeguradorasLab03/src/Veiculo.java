@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Veiculo 
 {
@@ -59,5 +60,9 @@ public class Veiculo
 	public void setAnoFabricacao(int anoFabricacao) {
 		this.anoFabricacao = anoFabricacao;
 	}
-
 }
+
+
+
+
+

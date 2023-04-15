@@ -17,9 +17,9 @@ public class Sinistro
 	@Override
 	public String toString() {
 		return "\nid: " + id + "\ndata: " + data + "\nendereco: " + endereco +
-				"\nseguradora: " + seguradora.getNome() +
-				"\nveiculo: " + veiculo.getPlaca() +
-				"\ncliente: " + cliente.getID();
+				"\nseguradora: " + seguradora.getNome() + //apenas o nome da seguradora
+				"\nveiculo: " + veiculo.getPlaca() +	  //apenas a placa do veículo	
+				"\ncliente: " + cliente.getID();		  //apenas o ID do cliente(cpf/cnpj)
 	}
 	
 	//construtor
