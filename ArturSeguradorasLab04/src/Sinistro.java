@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Random;
 
 
@@ -5,7 +6,7 @@ public class Sinistro
 {
 	//variáveis
 	private final int id;
-	private String data;
+	private LocalDate data;
 	private String endereco;
 	private Seguradora seguradora;
 	private Veiculo veiculo;
@@ -23,7 +24,7 @@ public class Sinistro
 	}
 	
 	//construtor
-	public Sinistro(String data, String endereco, Seguradora seguradora, 
+	public Sinistro(LocalDate data, String endereco, Seguradora seguradora, 
 			Veiculo veiculo, Cliente cliente) 
 	{
 		this.data = data;
@@ -45,7 +46,7 @@ public class Sinistro
 		return id;
 	}
 	
-	public String getData() {
+	public LocalDate getData() {
 		return data;
 	}
 	
@@ -67,7 +68,7 @@ public class Sinistro
 	
 	
 	// setters 
-	public void setData(String data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 	

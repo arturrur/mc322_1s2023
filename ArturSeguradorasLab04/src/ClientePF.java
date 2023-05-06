@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,10 +11,11 @@ public class ClientePF extends Cliente {
 	private String educacao;
 	private LocalDate dataNascimento;
 	private String classeEconomica;
+	
 
 	
-	public ClientePF(String nome, String endereco, Date dataLicenca,
-		String educacao,String genero, String classeEconomica, String cpf, Date dataNascimento)
+	public ClientePF(String nome, String endereco, String cpf, String genero, LocalDate dataLicenca,
+		String educacao, LocalDate dataNascimento, String classeEconomica)
 	{
 		
 		super(nome, endereco);
@@ -27,7 +29,7 @@ public class ClientePF extends Cliente {
 	
 	//getters
 
-	public Date getDataLicenca(){
+	public LocalDate getDataLicenca(){
 		return dataLicenca;
 	}
 		
@@ -47,17 +49,17 @@ public class ClientePF extends Cliente {
 		return cpf;
 	}
 	
-	public Date getdataNascimento() {
+	public LocalDate getdataNascimento() {
 		return dataNascimento;
 	}
 	
 	
 	//setters
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 	
-	public void setDataLicenca(Date dataLicenca) {
+	public void setDataLicenca(LocalDate dataLicenca) {
 		this.dataLicenca = dataLicenca;
 	}
 		
@@ -88,7 +90,7 @@ public class ClientePF extends Cliente {
 	@Override 
 	public double calculaScore() {
 		double fatorIdade = 0;
-		int idade = this.getIdade();
+		int idade = Period.between(dataNascimento, LocalDate.now()).getYears();
 		if (idade > 18 && idade < 30) {
 			fatorIdade = CalcSeguro.FATOR_18_30.getNumero();
 		}else if (idade >= 30 && idade < 60) {
@@ -97,16 +99,7 @@ public class ClientePF extends Cliente {
 			fatorIdade = CalcSeguro.FATOR_60_90.getNumero();
 		}
 
-		return CalcSeguro.VALOR_BASE.getNumero() * fatorIdade * this.getQntCarros();
+		return CalcSeguro.VALOR_BASE.getNumero() * fatorIdade * listaVeiculos.size();
 	}
 	
-	public int getIdade() {
-		int idade = 0;
-		//FAZER ALGO COM O DATA NASCIMENTO
-		return idade;
-	}
-	
-	public int getQntCarros() {
-		return this.listaVeiculos.size();
-	}
 }

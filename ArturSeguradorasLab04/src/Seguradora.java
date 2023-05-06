@@ -177,15 +177,6 @@ public class Seguradora
 		return false;
 	}
 	
-	
-	
-	/*
-	 * não entendi a utilidade dessa função
-	 * criei a cadastrarSinistro, para adicionar na listaSinistros
-	public boolean gerarSinistro() {
-		return true;
-	}	
-	 */
 
 	
 	//mostrar todos os Sinistro de um cliente a 
@@ -201,8 +192,11 @@ public class Seguradora
 		return achou;
 	}
 	
-	public ArrayList<Sinistro> listarSinistros(){  //retorna a própria lista
-		return listaSinistros;      
+	public void listarSinistros(){  //retorna a própria lista
+		System.out.println("Listando todos os sinistros:");
+		for (Sinistro si : this.listaSinistros) {
+			System.out.println(si.getId());
+		}    
 	}
 	
 	
