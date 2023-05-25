@@ -175,9 +175,9 @@ public class Seguradora {
 	public ArrayList<Seguro> getSegurosPorCliente(Cliente cliente){
 		ArrayList<Seguro> listaSegurosCliente = new ArrayList<Seguro>();
 		for (Seguro s : listaSeguros) {
-			//if(s.getCliente().equals(cliente)) {
-				//listaSegurosCliente.add(s);
-			//}
+			if(s.getCliente().equals(cliente)) {
+				listaSegurosCliente.add(s);
+			}
 		}
 		return listaSegurosCliente;
 	}
@@ -185,11 +185,11 @@ public class Seguradora {
 	public ArrayList<Sinistro> getSinistrosPorCliente(Cliente cliente){
 		ArrayList<Sinistro> listaSinistrosCliente = new ArrayList<Sinistro>();
 		for(Seguro s : listaSeguros) {
-			//if(s.getCliente().equals(cliente)) {
-				//for (Sinistro sin : s.getListaSinistros()) {
-					//listaSinistrosCliente.add(sin);
-				//}
-			//}
+			if(s.getCliente().equals(cliente)) {
+				for (Sinistro sin : s.getListaSinistros()) {
+					listaSinistrosCliente.add(sin);
+				}
+			}
 		}
 		return listaSinistrosCliente;
 	}
@@ -197,6 +197,7 @@ public class Seguradora {
 	public double calcularReceita() {
 		double receita = 0;
 		for (Seguro s : listaSeguros) {
+			s.atualizaValorMensal();      //Para checar se está atualizado
 			receita += s.getValorMensal();
 		}
 		return receita;

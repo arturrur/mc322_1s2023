@@ -7,6 +7,7 @@ public class AppMain {
 	//executa o menu externo: exibição do menu, leitura da opção e execução da opção
 	public static void main(String[] args) {
 		
+		//Instancia seguradora
 		Seguradora PrimSeguradora = new Seguradora("35819694000178", "PrimSeguradora", "(99)999999999", "São-Paulo",
 				"PrimSeguradora@gmail.com");
 		listaSeguradoras.add(PrimSeguradora);
@@ -14,7 +15,7 @@ public class AppMain {
 				"SegunSeguradora@gmail.com");
 		listaSeguradoras.add(SegunSeguradora);
 		
-		
+		//Instancia ClientePF e ClientePJ
 		ClientePF PrimClienteFis = new ClientePF("Artur", "(13)956127438", "Campinas", "artur@gmail.com", "57323732093",
 				"masculino", "escola", LocalDate.parse("2004-07-23"));
 		ClientePF SegunClienteFis = new ClientePF("Pedro", "(61)983647138", "Belo-Horizonte", "pedro@gmail.com", "27285885037",
@@ -25,7 +26,7 @@ public class AppMain {
 				LocalDate.parse("2020-03-12"), 320);
 
 		
-		
+		//Instancia Veiculo e Frota
 		Veiculo veiculo1 = new Veiculo ("111a", "bmw", "ax", 2015);
 		Veiculo veiculo2 = new Veiculo("222b", "volkswagen", "gol bola", 2001);
 		Veiculo veiculo3 = new Veiculo("333c", "fiat", "uno com escada", 1998); //DEPOIS
@@ -33,11 +34,14 @@ public class AppMain {
 		Frota frota1 = new Frota();
 		Frota frota2 = new Frota();
 		
+		
+		//Instancia Condutor 
 		Condutor condutor1 = new Condutor("60526974079", "condutor-um", "(12)963481274", "Guarulhos", "condutor1@gmail.com", LocalDate.parse("2001-03-01"));
 		Condutor condutor2 = new Condutor("61060620057", "condutor-dois", "(83)905631859", "Santos", "condutor2@gmail.com", LocalDate.parse("1990-12-28"));
 		Condutor condutor3 = new Condutor("42363440099", "condutor-tres", "(94)947569237", "Jundiai", "condutor3@gmail.com", LocalDate.parse("1971-05-30"));
 		Condutor condutor4 = new Condutor("07425107007", "condutor-quatro", "(11)983217431", "Londres", "condutor4@gmail.com", LocalDate.parse("1996-08-12"));
 		Condutor condutor5 = new Condutor("69623301030", "condutor-cinco", "(55)934715620", "Sydney", "condutor5@gmail.com", LocalDate.parse("2000-04-02"));
+		
 		
 		PrimClienteFis.cadastrarVeiculo(veiculo1);
 		SegunClienteFis.cadastrarVeiculo(veiculo2);
@@ -52,6 +56,8 @@ public class AppMain {
 		SegunSeguradora.cadastrarCliente(SegunClienteFis);
 		SegunSeguradora.cadastrarCliente(SegunClienteJur);
 		
+		
+		//Instancia SeguroPF e SeguroPJ
 		PrimSeguradora.gerarSeguro(LocalDate.parse("2022-03-03"), LocalDate.parse("2024-03-03"), veiculo1, PrimClienteFis);
 		PrimSeguradora.gerarSeguro(LocalDate.parse("2022-05-05"), LocalDate.parse("2024-05-05"), frota1, PrimClienteJur);
 		SegunSeguradora.gerarSeguro(LocalDate.parse("2022-07-07"), LocalDate.parse("2024-07-07"), veiculo2, SegunClienteFis);
@@ -63,12 +69,54 @@ public class AppMain {
 		SegunSeguradora.getListaSeguros().get(1).autorizarCondutor(condutor4);
 		SegunSeguradora.getListaSeguros().get(1).autorizarCondutor(condutor5);
 		
+		
+		//Instancia Sinistro
 		PrimSeguradora.getListaSeguros().get(0).gerarSinistro(LocalDate.parse("2023-03-04"), "Avenida 1", condutor1);
 		PrimSeguradora.getListaSeguros().get(1).gerarSinistro(LocalDate.parse("2023-08-11"), "Avenida 2", condutor2);
 		SegunSeguradora.getListaSeguros().get(0).gerarSinistro(LocalDate.parse("2023-10-01"), "Avenida 3", condutor3);
 		SegunSeguradora.getListaSeguros().get(1).gerarSinistro(LocalDate.parse("2023-06-07"), "Avenida 4", condutor4);
 		SegunSeguradora.getListaSeguros().get(1).gerarSinistro(LocalDate.parse("2023-12-02"), "Avenida 5", condutor5);
-		 
+		//               TO STRING DE TODOS OBJETOS
+		//ClientePF 
+		System.out.println(PrimClienteFis.toString());
+		//ClientePJ 
+		System.out.println(PrimClienteJur.toString());
+		//Condutor
+		System.out.println(condutor1.toString());
+		//Frota
+		System.out.println(frota1.toString());
+		//Seguradora
+		System.out.println(PrimSeguradora.toString());
+		 //SeguroPF
+		System.out.println(PrimSeguradora.getListaSeguros().get(0).toString());
+		//SeguroPJ
+		System.out.println(PrimSeguradora.getListaSeguros().get(1).toString());
+		//Sinistro
+		System.out.println(SegunSeguradora.getListaSeguros().get(0).getListaSinistros().get(0).toString());
+		//Veiculo
+		System.out.println(veiculo1.toString());
+		
+		
+		
+		//                EXEMPLOS DOS PRINCIPAIS METODOS QUE AINDA NÃO FORAM MOSTRADOS OU SÃO APENAS 
+		//                                INSERIR OU RETIRAR ELEMENTOS DE UMA LISTA
+		
+		System.out.println(PrimSeguradora.calcularReceita());
+		
+		for (Seguro seg : PrimSeguradora.getSegurosPorCliente(PrimClienteFis)) {
+			System.out.println(seg.getID());
+		}
+		
+		for (Cliente c : PrimSeguradora.listarClientes("ClientePF")) {
+			System.out.println(c.getID());
+		}
+		
+		for (Sinistro sin : PrimSeguradora.getSinistrosPorCliente(PrimClienteJur)) {
+			System.out.println(sin.getID());
+		}
+		
+		//                              MENU-OPERAÇÕES
+		
 		MenuOpcoes op;
 		do {
 			exibirMenuExterno();
