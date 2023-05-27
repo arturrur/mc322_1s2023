@@ -21,6 +21,7 @@ public enum MenuOpcoes {
 	EXCLUIR("Excluir", new SubmenuOpcoes[] {
 			SubmenuOpcoes.EXCLUIR_CLIENTE,
 			SubmenuOpcoes.EXCLUIR_VEICULO,
+			SubmenuOpcoes.EXCLUIR_FROTA,
 			SubmenuOpcoes.EXCLUIR_SINISTRO,
 			SubmenuOpcoes.VOLTAR}),
 	ATUALIZAR_FROTA("Atualizar Frota", new SubmenuOpcoes[] {

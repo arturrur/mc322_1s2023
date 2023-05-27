@@ -12,6 +12,7 @@ public enum SubmenuOpcoes {
 	LISTAR_VEICULOS("Listar veiculo"),
 	EXCLUIR_CLIENTE("Excluir cliente"),
 	EXCLUIR_VEICULO("Excluir veiculo"),
+	EXCLUIR_FROTA("Excluir frota"),
 	EXCLUIR_SINISTRO("Excluir sininstro"),
 	ADICIONAR_VEICULO_FROTA("Adicionar veículo na frota"),
 	REMOVER_VEICULO_FROTA("Remover veículo da frota"),

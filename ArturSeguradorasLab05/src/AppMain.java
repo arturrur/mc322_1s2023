@@ -76,44 +76,88 @@ public class AppMain {
 		SegunSeguradora.getListaSeguros().get(0).gerarSinistro(LocalDate.parse("2023-10-01"), "Avenida 3", condutor3);
 		SegunSeguradora.getListaSeguros().get(1).gerarSinistro(LocalDate.parse("2023-06-07"), "Avenida 4", condutor4);
 		SegunSeguradora.getListaSeguros().get(1).gerarSinistro(LocalDate.parse("2023-12-02"), "Avenida 5", condutor5);
+		
+		
+		System.out.println();
 		//               TO STRING DE TODOS OBJETOS
+		
 		//ClientePF 
+		System.out.println("---Imprimindo método toString() do ClientePF---");
 		System.out.println(PrimClienteFis.toString());
+		
 		//ClientePJ 
+		System.out.println("---Imprimindo método toString() do ClientePJ---");
 		System.out.println(PrimClienteJur.toString());
+		
+		
 		//Condutor
+		System.out.println();
+		System.out.println("---Imprimindo método toString() do Condutor---");
+		System.out.println();
 		System.out.println(condutor1.toString());
+		
 		//Frota
+		System.out.println("---Imprimindo método toString() da Frota--");
+		System.out.println();
 		System.out.println(frota1.toString());
+		
 		//Seguradora
+		System.out.println("---Imprimindo método toString() da Seguradora---");
+		System.out.println();
 		System.out.println(PrimSeguradora.toString());
+		
 		 //SeguroPF
+		System.out.println("---Imprimindo método toString() do SeguroPF---");
+		System.out.println();
 		System.out.println(PrimSeguradora.getListaSeguros().get(0).toString());
+		
 		//SeguroPJ
+		System.out.println();
+		System.out.println("---Imprimindo método toString() do SeguroPJ---");
+		System.out.println();
 		System.out.println(PrimSeguradora.getListaSeguros().get(1).toString());
+		
 		//Sinistro
+		System.out.println();
+		System.out.println("---Imprimindo método toString() do Sinistro---");
 		System.out.println(SegunSeguradora.getListaSeguros().get(0).getListaSinistros().get(0).toString());
+		
 		//Veiculo
+		System.out.println();
+		System.out.println("---Imprimindo método toString() do Veiculo---");
 		System.out.println(veiculo1.toString());
 		
+		System.out.println();
+		System.out.println();
 		
 		
 		//                EXEMPLOS DOS PRINCIPAIS METODOS QUE AINDA NÃO FORAM MOSTRADOS OU SÃO APENAS 
 		//                                INSERIR OU RETIRAR ELEMENTOS DE UMA LISTA
-		
+		System.out.println("Receita da Seguradora: ");
 		System.out.println(PrimSeguradora.calcularReceita());
 		
+		System.out.println();
+		System.out.println();
+		System.out.println("Imprimindo os IDs dos seguros do PrimClienteFis: ");
 		for (Seguro seg : PrimSeguradora.getSegurosPorCliente(PrimClienteFis)) {
 			System.out.println(seg.getID());
 		}
-		
+		System.out.println();
+		System.out.println();
+		System.out.println("Imprimindo os IDs dos ClientePF's da PrimSeguradora: ");
 		for (Cliente c : PrimSeguradora.listarClientes("ClientePF")) {
 			System.out.println(c.getID());
 		}
 		
+		System.out.println();
+		System.out.println();
+		System.out.println("Imprimindo os IDs dos sinistros do PrimClienteFis: ");
 		for (Sinistro sin : PrimSeguradora.getSinistrosPorCliente(PrimClienteJur)) {
 			System.out.println(sin.getID());
 		}
+		
+		System.out.println();
+		System.out.println();
 		
 		//                              MENU-OPERAÇÕES
 		
@@ -242,6 +286,10 @@ public class AppMain {
 		case EXCLUIR_VEICULO:
 			System.out.println("Chamando excluir veiculo");
 			excluir_veiculo();
+			break;
+		case EXCLUIR_FROTA:
+			System.out.println("Chamando excluir frota");
+			excluir_frota();
 			break;
 		case EXCLUIR_SINISTRO:
 			System.out.println("Chamamando o metodo excluir sinistro");
@@ -565,27 +613,30 @@ public class AppMain {
 		int i = 0;
 		
 		for (Cliente c : seguradoraAtual.getListaClientes()) {
-			System.out.printf("%d - %s (%s)", i, c.getNome(), c.getID());
+			System.out.printf("%d - %s (%s)\n", i, c.getNome(), c.getID());
 			i++;
 		}
 		i = 0;
 		int numCliente = texto.nextInt();
 		texto.nextLine();
+		System.out.println("Qual frota deseja remover?");
 		if (seguradoraAtual.getListaClientes().get(numCliente) instanceof ClientePJ) {
 			for (Frota f : ((ClientePJ) seguradoraAtual.getListaClientes().get(numCliente)).getListaFrotas()) {
-				System.out.printf("%d - %d", i, f.getCode());
+				System.out.printf("%d - %d\n", i, f.getCode());
 				i++;
 			}
 			i = 0;
 			int numFrota = texto.nextInt();
 			texto.nextLine(); //limpa buffer
 			Frota frotaAtual = ((ClientePJ) seguradoraAtual.getListaClientes().get(numCliente)).getListaFrotas().get(numFrota);
-			((ClientePJ) seguradoraAtual.getListaClientes().get(numCliente)).removerFrota(frotaAtual);
-			for (Seguro seg : seguradoraAtual.getListaSeguros()) {
-				if (((SeguroPJ) seg).getFrota().equals(frotaAtual)){
-					seguradoraAtual.cancelarSeguro(seg);
+			for(i = 0; i < seguradoraAtual.getListaSeguros().size(); i++) {
+				if(seguradoraAtual.getListaSeguros().get(i) instanceof SeguroPJ) {
+					if ((((SeguroPJ) seguradoraAtual.getListaSeguros().get(i)).getFrota().equals(frotaAtual))){
+						seguradoraAtual.cancelarSeguro(seguradoraAtual.getListaSeguros().get(i));
+					}
 				}
 			}
+			((ClientePJ) seguradoraAtual.getListaClientes().get(numCliente)).removerFrota(frotaAtual);
 		}else {
 			System.out.println("Esse cliente não é uma PJ");
 		}
