@@ -341,6 +341,11 @@ public class Seguradora implements I_Arquivo{
 					String ensinoPF = vetor[6];
 					LocalDate dataNascimentoPF = LocalDate.parse(vetor[7]);
 					
+					if(!Validacao.validarCPF(cpfPF)) {
+						System.out.println("cpf inválido");
+						break;
+					}
+					
 					ClientePF clientepf = new ClientePF(nomePF, telefonePF, enderecoPF, emailPF, cpfPF, sexoPF,
 							ensinoPF, dataNascimentoPF);  //cria o cliente
 					listaClientes.add(clientepf);
@@ -359,6 +364,11 @@ public class Seguradora implements I_Arquivo{
 					String emailPJ = vetor[4];
 					LocalDate dataPJ = LocalDate.parse(vetor[5]);
 					
+					if(!Validacao.validarCNPJ(cnpjPJ)) {
+						System.out.println("cnpj inválido");
+						break;
+					}
+					
 					ClientePJ clientepj = new ClientePJ(nomePJ, telefonePJ, enderecoPJ,  // todos tem 80 funcionarios
 							emailPJ, cnpjPJ, dataPJ, 80);                                //esqueceram no arquivo
 					listaClientes.add(clientepj);
@@ -375,6 +385,11 @@ public class Seguradora implements I_Arquivo{
 					String enderecoCond = vetor[3];
 					String emailCond = vetor[4];
 					LocalDate dataNascimentoCond = LocalDate.parse(vetor[5]);
+					
+					if(!Validacao.validarCPF(cpfCond)) {
+						System.out.println("cpf inválido");
+						break;
+					}
 					
 					Condutor condutor = new Condutor(cpfCond, nomeCond, telefoneCond, enderecoCond,
 							emailCond, dataNascimentoCond);	
@@ -419,6 +434,7 @@ public class Seguradora implements I_Arquivo{
 		return null;
 	}
 	
+
 	public Veiculo acharVeiculo(String placa) {
 		for (Veiculo v : listaVeiculosLidos) {
 			if (v.getPlaca().equals(placa)) {
